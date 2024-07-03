@@ -1,7 +1,10 @@
 from textwrap import dedent
 from crewai import Agent
-
 from tools.ExaSearchTool import ExaSearchTool
+from langchain.llms import Ollama
+
+
+llm = Ollama(model="llama3")  
 
 class MeetingPreparationAgents():
 	def research_agent(self):
@@ -13,7 +16,8 @@ class MeetingPreparationAgents():
 					As a Research Specialist, your mission is to uncover detailed information
 					about the individuals and entities participating in the meeting. Your insights
 					will lay the groundwork for strategic meeting preparation."""),
-			verbose=True
+			verbose=True,
+      llm=llm
 		)
 
 	def industry_analysis_agent(self):
@@ -25,7 +29,8 @@ class MeetingPreparationAgents():
 					As an Industry Analyst, your analysis will identify key trends,
 					challenges facing the industry, and potential opportunities that
 					could be leveraged during the meeting for strategic advantage."""),
-			verbose=True
+			verbose=True,
+      llm=llm
 		)
 
 	def meeting_strategy_agent(self):
@@ -37,7 +42,8 @@ class MeetingPreparationAgents():
 					As a Strategy Advisor, your expertise will guide the development of
 					talking points, insightful questions, and strategic angles
 					to ensure the meeting's objectives are achieved."""),
-			verbose=True
+			verbose=True,
+      llm=llm
 		)
 
 	def summary_and_briefing_agent(self):
@@ -48,5 +54,6 @@ class MeetingPreparationAgents():
 			backstory=dedent("""\
 					As the Briefing Coordinator, your role is to consolidate the research,
 					analysis, and strategic insights."""),
-			verbose=True
+			verbose=True,
+      llm=llm
 		)

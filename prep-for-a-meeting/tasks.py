@@ -1,5 +1,8 @@
 from textwrap import dedent
 from crewai import Task
+from langchain.llms import Ollama
+
+llm = Ollama(model="llama3")  
 
 class MeetingPreparationTasks():
 	def research_task(self, agent, participants, context):
@@ -16,7 +19,8 @@ class MeetingPreparationTasks():
 				A detailed report summarizing key findings about each participant
 				and company, highlighting information that could be relevant for the meeting."""),
 			async_execution=True,
-			agent=agent
+			agent=agent,
+      llm=llm
 		)
 
 	def industry_analysis_task(self, agent, participants, context):
@@ -33,7 +37,8 @@ class MeetingPreparationTasks():
 				An insightful analysis that identifies major trends, potential
 				challenges, and strategic opportunities."""),
 			async_execution=True,
-			agent=agent
+			agent=agent,
+      llm=llm
 		)
 
 	def meeting_strategy_task(self, agent, context, objective):
@@ -47,7 +52,8 @@ class MeetingPreparationTasks():
 			expected_output=dedent("""\
 				Complete report with a list of key talking points, strategic questions
 				to ask to help achieve the meetings objective during the meeting."""),
-			agent=agent
+			agent=agent,
+      llm=llm
 		)
 
 	def summary_and_briefing_task(self, agent, context, objective):
@@ -65,5 +71,6 @@ class MeetingPreparationTasks():
 				A well-structured briefing document that includes sections for
 				participant bios, industry overview, talking points, and
 				strategic recommendations."""),
-			agent=agent
+			agent=agent,
+      llm=llm
 		)
